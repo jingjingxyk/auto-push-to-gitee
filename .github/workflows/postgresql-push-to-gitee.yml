@@ -44,22 +44,21 @@ jobs:
         run: |
           set -x
           CURRENT_DIR=$(pwd)
-          ls -lha .
 
-          # 参考 https://github.com/wearerequired/git-mirror-action/blob/master/git-mirror.sh
-          git remote -v
-          git clone --mirror https://git.postgresql.org/git/postgresql.git postgresql
+          git clone --mirror git://git.postgresql.org/git/postgresql.git postgresql
           cd postgresql
-          pwd
-
-          # git remote set-url --push origin "$DESTINATION_REPO"
           git remote set-url --push origin git@gitee.com:jingjingxyk/postgresql.git
           git remote -v
-
           git fetch -p origin
-          # Exclude refs created by GitHub for pull request.
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+          git push --mirror
 
+          git clone --mirror https://git.osgeo.org/gitea/postgis/postgis.git postgis
+          cd postgis
+          git remote set-url --push origin git@gitee.com:jingjingxyk/postgis.git
+          git remote -v
+          git fetch -p origin
+          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
           git push --mirror
 
           cd ${CURRENT_DIR}
