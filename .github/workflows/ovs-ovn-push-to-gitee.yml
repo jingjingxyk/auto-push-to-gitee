@@ -1,10 +1,10 @@
-name: socat-push-to-gitee
+name: ovs-ovn-push-to-gitee
 
 on:
   push:
   pull_request:
   schedule:
-    - cron: '0 0 */7 * *'
+    - cron: '0 0 */5 * *'
 
 env:
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
@@ -48,12 +48,12 @@ jobs:
 
           # 参考 https://github.com/wearerequired/git-mirror-action/blob/master/git-mirror.sh
           git remote -v
-          git clone --mirror https://repo.or.cz/socat.git
-          cd socat
+          git clone --mirror https://github.com/openvswitch/ovs.git 
+          cd ovs
           pwd
 
           # git remote set-url --push origin "$DESTINATION_REPO"
-          git remote set-url --push origin git@gitee.com:jingjingxyk/socat.git
+          git remote set-url --push origin git@gitee.com:jingjingxyk/ovs.git
           git remote -v
 
           git fetch -p origin
@@ -64,3 +64,18 @@ jobs:
 
           cd ${CURRENT_DIR}
 
+          git clone --mirror https://github.com/ovn-org/ovn.git
+          cd ovn
+          pwd
+
+          # git remote set-url --push origin "$DESTINATION_REPO"
+          git remote set-url --push origin git@gitee.com:jingjingxyk/ovn.git
+          git remote -v
+
+          git fetch -p origin
+          # Exclude refs created by GitHub for pull request.
+          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+
+          git push --mirror
+
+          cd ${CURRENT_DIR}
