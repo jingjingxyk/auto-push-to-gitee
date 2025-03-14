@@ -1,10 +1,10 @@
-name: openssh-push-to-gitee
+name: swoole-cli-push-to-gitee
 
 on:
   push:
   pull_request:
   schedule:
-    - cron: '0 0 */5 * *'
+    - cron: '0 0 * * *'
 
 env:
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
@@ -20,6 +20,8 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Set Env
         run: |
           echo "CURRENT_BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_ENV
@@ -46,12 +48,14 @@ jobs:
           CURRENT_DIR=$(pwd)
           ls -lha .
 
+          # 参考 https://github.com/wearerequired/git-mirror-action/blob/master/git-mirror.sh
           git remote -v
-          git clone --mirror git://anongit.mindrot.org/openssh.git openssh
-          cd openssh
+          git clone --mirror https://github.com/jingjingxyk/swoole-cli swoole-cli
+          cd swoole-cli
           pwd
 
-          git remote set-url --push origin git@gitee.com:jingjingxyk/openssh.git
+          # git remote set-url --push origin "$DESTINATION_REPO"
+          git remote set-url --push origin git@gitee.com:jingjingxyk/swoole-cli.git
           git remote -v
 
           git fetch -p origin
@@ -60,5 +64,5 @@ jobs:
 
           git push --mirror
 
-
+          cd ${CURRENT_DIR}
 
