@@ -48,7 +48,7 @@ jobs:
 
           # 参考 https://github.com/wearerequired/git-mirror-action/blob/master/git-mirror.sh
           git remote -v
-          git clone --mirror https://git.postgresql.org/git/postgresql.git
+          git clone --mirror https://git.postgresql.org/git/postgresql.git postgresql
           cd postgresql
           pwd
 

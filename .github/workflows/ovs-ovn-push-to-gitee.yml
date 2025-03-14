@@ -48,7 +48,7 @@ jobs:
 
           # 参考 https://github.com/wearerequired/git-mirror-action/blob/master/git-mirror.sh
           git remote -v
-          git clone --mirror https://github.com/openvswitch/ovs.git
+          git clone --mirror https://github.com/openvswitch/ovs.git ovs
           cd ovs
           pwd
 
@@ -64,7 +64,7 @@ jobs:
 
           cd ${CURRENT_DIR}
 
-          git clone --mirror https://github.com/ovn-org/ovn.git
+          git clone --mirror https://github.com/ovn-org/ovn.git ovn
           cd ovn
           pwd
 
