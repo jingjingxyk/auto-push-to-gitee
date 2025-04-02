@@ -1,4 +1,4 @@
-name: gimp-push-to-gitee
+name: blender-push-to-gitee
 
 on:
   push:
