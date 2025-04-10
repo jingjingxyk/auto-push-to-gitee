@@ -47,10 +47,15 @@ jobs:
           ls -lha .
 
           git remote -v
-          git clone --mirror https://github.com/signalwire/freeswitch.git freeswitch
-          cd freeswitch
+          git clone  https://github.com/signalwire/freeswitch.git repo
+          cd repo
+          git filter-branch --subdirectory-filter master -- --all
+          cd ..
           pwd
-
+          git clone --mirror ./repo reeswitch.git
+  
+          cd reeswitch
+          git remote -v 
           git remote set-url --push origin git@gitee.com:jingjingxyk/freeswitch.git
           git remote -v
 
