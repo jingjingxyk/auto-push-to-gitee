@@ -55,20 +55,11 @@ jobs:
           git-filter-repo --refs master
           git log --oneline 
           git branch -a
-          cd ..
-          pwd
-          git clone --mirror ./repo freeswitch
-          ls -lh .
-  
-          cd freeswitch
           git remote -v 
-          git remote set-url --push origin git@gitee.com:jingjingxyk/freeswitch.git
+          git remote set-url gitee git@gitee.com:jingjingxyk/freeswitch.git
           git remote -v
 
-          # Exclude refs created by GitHub for pull request.
-          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
-
-          git push --mirror
+          git push gitee master:master
 
 
 
