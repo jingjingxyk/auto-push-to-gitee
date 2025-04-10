@@ -45,13 +45,11 @@ jobs:
           set -x
           CURRENT_DIR=$(pwd)
 
-          git clone --mirror https://gitlab.gnome.org/GNOME/gimp.git gimp
+          git clone -b master https://gitlab.gnome.org/GNOME/gimp.git gimp
           cd gimp
-          git remote set-url --push origin git@gitee.com:jingjingxyk/gimp.git
+          git remote add gitee git@gitee.com:jingjingxyk/gimp.git
           git remote -v
-          git fetch -p origin
-          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
-          git push --mirror
+          git push gitee master:master
           
           cd ${CURRENT_DIR}
 
