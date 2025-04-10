@@ -51,7 +51,7 @@ jobs:
           cd repo
           cd ..
           pwd
-          git clone --mirror ./repo freeswitch.git
+          git clone --mirror ./repo freeswitch
           ls -lh .
   
           cd freeswitch
