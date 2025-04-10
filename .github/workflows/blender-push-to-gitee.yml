@@ -45,7 +45,7 @@ jobs:
           set -x
           CURRENT_DIR=$(pwd)
 
-          git clone  https://projects.blender.org/blender/blender.git app
+          git clone --single-branch  --branch main https://projects.blender.org/blender/blender.git app
           cd app
           git remote add gitee git@gitee.com:jingjingxyk/blender.git
           git remote -v

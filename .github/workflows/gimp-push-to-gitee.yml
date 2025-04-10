@@ -45,7 +45,7 @@ jobs:
           set -x
           CURRENT_DIR=$(pwd)
 
-          git clone -b master https://gitlab.gnome.org/GNOME/gimp.git gimp
+          git clone --single-branch  --branch master https://gitlab.gnome.org/GNOME/gimp.git gimp
           cd gimp
           git remote add gitee git@gitee.com:jingjingxyk/gimp.git
           git remote -v
