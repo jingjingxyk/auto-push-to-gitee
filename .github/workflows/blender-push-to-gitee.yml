@@ -45,13 +45,11 @@ jobs:
           set -x
           CURRENT_DIR=$(pwd)
 
-          git clone --mirror https://projects.blender.org/blender/blender.git app
+          git clone  https://projects.blender.org/blender/blender.git app
           cd app
-          git remote set-url --push origin git@gitee.com:jingjingxyk/blender.git
+          git remote add gitee git@gitee.com:jingjingxyk/blender.git
           git remote -v
-          git fetch -p origin
-          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
-          git push --mirror
+          git push gitee main:main
           
           cd ${CURRENT_DIR}
 

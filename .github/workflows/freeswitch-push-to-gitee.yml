@@ -53,7 +53,7 @@ jobs:
           git clone --single-branch  --branch master https://github.com/signalwire/freeswitch.git repo
           cd repo
           git-filter-repo --refs master
-          git log --oneline 
+          # git log --oneline 
           git branch -a
           git remote -v 
           git remote add gitee git@gitee.com:jingjingxyk/freeswitch.git
