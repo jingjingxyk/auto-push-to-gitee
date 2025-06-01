@@ -45,7 +45,7 @@ jobs:
           set -x
           CURRENT_DIR=$(pwd)
 
-          git clone --mirror git clone https://webrtc.googlesource.com/src webrtc
+          git clone --mirror https://webrtc.googlesource.com/src webrtc
           cd webrtc
           git remote set-url --push origin git@gitee.com:jingjingxyk/webrtc.git
           git remote -v

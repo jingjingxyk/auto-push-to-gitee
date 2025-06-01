@@ -45,7 +45,7 @@ jobs:
           set -x
           CURRENT_DIR=$(pwd)
 
-          git clone --mirror git clone https://github.com/webrtcHacks/adapter.git webrtc-adapter
+          git clone --mirror  https://github.com/webrtcHacks/adapter.git webrtc-adapter
           cd webrtc-adapter
           git remote set-url --push origin git@gitee.com:jingjingxyk/webrtc-adapter.git
           git remote -v
