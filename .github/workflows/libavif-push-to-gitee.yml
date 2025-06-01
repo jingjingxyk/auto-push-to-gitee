@@ -58,7 +58,7 @@ jobs:
          
           git clone --mirror https://gitlab.com/AOMediaCodec/SVT-AV1.git app
           cd app
-          git remote set-url --push origin git@gitee.com:jingjingxyk/SVT-AV1.git
+          git remote set-url --push origin git@gitee.com:jingjingxyk/svt-av1.git
           git remote -v
           git fetch -p origin
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
