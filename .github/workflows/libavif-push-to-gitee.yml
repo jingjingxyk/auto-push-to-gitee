@@ -1,0 +1,93 @@
+name: libavif-push-to-gitee
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'
+
+env:
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
+jobs:
+  push-to-gitee:
+    if: ${{ (github.repository_owner == 'jingjingxyk') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: install deps
+        run: |
+          sudo apt install openssh-client
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set Env
+        run: |
+          echo "CURRENT_BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_ENV
+      - name: Prepare Secret Key
+        env:
+          PUSH_TO_GITEE_SECRET_KEY: ${{ secrets.PUSH_TO_GITEE_SECRET_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          printf "%s\n" "$PUSH_TO_GITEE_SECRET_KEY" > ~/.ssh/github-push-to-gitee-key
+          chmod 0400 ~/.ssh/github-push-to-gitee-key
+          cat > ~/.ssh/config <<'EOF'
+          Host gitee.com
+            Hostname gitee.com
+            Port 22
+            PreferredAuthentications publickey
+            StrictHostKeyChecking no
+            IdentityFile ~/.ssh/github-push-to-gitee-key
+          EOF
+          ls -lh ~/.ssh/
+
+      - name: push to gitee with git mirror
+        run: |
+          set -x
+          CURRENT_DIR=$(pwd)
+
+          git clone --mirror https://github.com/AOMediaCodec/libavif.git app
+          cd app
+          git remote set-url --push origin git@gitee.com:jingjingxyk/libavif.git
+          git remote -v
+          git fetch -p origin
+          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+          git push --mirror
+          cd ${CURRENT_DIR}     
+          
+          git clone --mirror https://aomedia.googlesource.com/aom app
+          cd app
+          git remote set-url --push origin git@gitee.com:jingjingxyk/aom.git
+          git remote -v
+          git fetch -p origin
+          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+          git push --mirror
+          cd ${CURRENT_DIR}
+
+          git clone --mirror https://gitlab.com/AOMediaCodec/SVT-AV1.git app
+          cd app
+          git remote set-url --push origin git@gitee.com:jingjingxyk/SVT-AV1.git
+          git remote -v
+          git fetch -p origin
+          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+          git push --mirror
+          cd ${CURRENT_DIR}      
+          
+          git clone --mirror https://chromium.googlesource.com/codecs/libgav1 app
+          cd app
+          git remote set-url --push origin git@gitee.com:jingjingxyk/libgav1.git
+          git remote -v
+          git fetch -p origin
+          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+          git push --mirror
+          cd ${CURRENT_DIR}     
+                    
+          git clone --mirror https://code.videolan.org/videolan/dav1d.git app
+          cd app
+          git remote set-url --push origin git@gitee.com:jingjingxyk/dav1d.git
+          git remote -v
+          git fetch -p origin
+          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+          git push --mirror
+          cd ${CURRENT_DIR}     
+          
+
