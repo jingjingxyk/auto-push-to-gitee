@@ -45,7 +45,8 @@ jobs:
           set -x
           CURRENT_DIR=$(pwd)
 
-          git clone --mirror git://git.postgresql.org/git/postgresql.git postgresql
+          # git clone --mirror git://git.postgresql.org/git/postgresql.git postgresql
+          git clone --mirror https://github.com/postgres/postgres.git postgresql
           cd postgresql
           git remote set-url --push origin git@gitee.com:jingjingxyk/postgresql.git
           git remote -v
