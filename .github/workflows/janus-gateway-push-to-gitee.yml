@@ -1,4 +1,4 @@
-name: webrtc-push-to-gitee
+name: janus-gateway-push-to-gitee
 
 on:
   push:
@@ -45,15 +45,9 @@ jobs:
           set -x
           CURRENT_DIR=$(pwd)
 
-          git clone https://webrtc.googlesource.com/src webrtc
-          cd webrtc
-          git remote add gitee git@gitee.com:jingjingxyk/webrtc.git
-          git push gitee
-
-          exit 0 
-          git clone --mirror https://webrtc.googlesource.com/src webrtc
-          cd webrtc
-          git remote set-url --push origin git@gitee.com:jingjingxyk/webrtc.git
+          git clone --mirror https://github.com/meetecho/janus-gateway.git app
+          cd app
+          git remote set-url --push origin git@gitee.com:jingjingxyk/janus-gateway.git
           git remote -v
           git fetch -p origin
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
