@@ -52,7 +52,7 @@ jobs:
 
           git for-each-ref --format 'delete %(refname)' refs/
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
-          git push gitee main:main
+          git push gitee master:master
           
           exit 0 
           git clone --mirror https://github.com/kamailio/kamailio.git app
