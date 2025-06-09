@@ -45,7 +45,7 @@ jobs:
           set -x
           CURRENT_DIR=$(pwd)
 
-          git clone -b main --progress --depth=1 https://webrtc.googlesource.com/src webrtc
+          git clone -b main --progress https://webrtc.googlesource.com/src webrtc
           cd webrtc
           git remote add gitee git@gitee.com:jingjingxyk/webrtc.git
           git remote -v 

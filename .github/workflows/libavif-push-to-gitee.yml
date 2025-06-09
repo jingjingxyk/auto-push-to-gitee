@@ -77,6 +77,7 @@ jobs:
           git fetch -p origin
           git for-each-ref --format 'delete %(refname)' refs/
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+          git for-each-ref --format 'delete %(refname)' refs/merge-requests | git update-ref --stdin
           git push --mirror
           cd ${CURRENT_DIR}
           test -d app && rm -rf app
@@ -89,6 +90,8 @@ jobs:
           git for-each-ref --format 'delete %(refname)' refs/
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
           git for-each-ref --format 'delete %(refname)' refs/merge-requests | git update-ref --stdin
+          git for-each-ref --format 'delete %(refname)' refs/users | git update-ref --stdin
+          git for-each-ref --format 'delete %(refname)' refs/changes | git update-ref --stdin
           git push --mirror
           cd ${CURRENT_DIR}
           test -d app && rm -rf app   
@@ -100,6 +103,7 @@ jobs:
           git fetch -p origin
           git for-each-ref --format 'delete %(refname)' refs/
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+          git for-each-ref --format 'delete %(refname)' refs/changes | git update-ref --stdin
           git push --mirror
           cd ${CURRENT_DIR}
           test -d app && rm -rf app
