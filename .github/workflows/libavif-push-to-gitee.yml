@@ -104,6 +104,7 @@ jobs:
           git for-each-ref --format 'delete %(refname)' refs/
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
           git for-each-ref --format 'delete %(refname)' refs/changes | git update-ref --stdin
+          git for-each-ref --format 'delete %(refname)' refs/cache-automerge | git update-ref --stdin
           git push --mirror
           cd ${CURRENT_DIR}
           test -d app && rm -rf app
