@@ -73,6 +73,7 @@ jobs:
           git remote set-url --push origin git@gitee.com:jingjingxyk/libgav1.git
           git remote -v
           git fetch -p origin
+          git for-each-ref --format 'delete %(refname)' refs/
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
           git push --mirror
           cd ${CURRENT_DIR}
@@ -83,6 +84,7 @@ jobs:
           git remote set-url --push origin git@gitee.com:jingjingxyk/dav1d.git
           git remote -v
           git fetch -p origin
+          git for-each-ref --format 'delete %(refname)' refs/
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
           git push --mirror
           cd ${CURRENT_DIR}
@@ -93,6 +95,7 @@ jobs:
           git remote set-url --push origin git@gitee.com:jingjingxyk/aom.git
           git remote -v
           git fetch -p origin
+          git for-each-ref --format 'delete %(refname)' refs/
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
           git push --mirror
           cd ${CURRENT_DIR}
