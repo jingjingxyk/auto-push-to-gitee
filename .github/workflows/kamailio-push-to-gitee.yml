@@ -45,6 +45,16 @@ jobs:
           set -x
           CURRENT_DIR=$(pwd)
 
+          git clone -b master --progress https://github.com/kamailio/kamailio.git app
+          cd  app
+          git remote add gitee git@gitee.com:jingjingxyk/kamailio.git
+          git remote -v 
+
+          git for-each-ref --format 'delete %(refname)' refs/
+          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+          git push gitee main:main
+          
+          exit 0 
           git clone --mirror https://github.com/kamailio/kamailio.git app
           cd  app
           git remote set-url --push origin git@gitee.com:jingjingxyk/kamailio.git
