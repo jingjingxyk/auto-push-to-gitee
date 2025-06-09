@@ -45,12 +45,12 @@ jobs:
           set -x
           CURRENT_DIR=$(pwd)
 
-          git clone -b main https://webrtc.googlesource.com/src webrtc
+          git clone -b main --progress --depth=1 https://webrtc.googlesource.com/src webrtc
           cd webrtc
           git remote add gitee git@gitee.com:jingjingxyk/webrtc.git
           git remote -v 
-          git push -d gitee:main
-          # git push gitee
+          git push -d gitee main:main
+          git push gitee main:main
 
           exit 0 
           git clone --mirror https://webrtc.googlesource.com/src webrtc
