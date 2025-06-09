@@ -62,7 +62,7 @@ jobs:
           git remote -v
           git fetch -p origin
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
-          git for-each-ref --format 'delete %(refname)' refs/merge-requests |
+          git for-each-ref --format 'delete %(refname)' refs/ 
           git for-each-ref --format 'delete %(refname)' refs/merge-requests | git update-ref --stdin
           git push --mirror
           cd ${CURRENT_DIR}
