@@ -49,7 +49,7 @@ jobs:
           cd webrtc
           git remote add gitee git@gitee.com:jingjingxyk/webrtc.git
           git remote -v 
-          git push -d gitee main:main
+          git push gitee --delete main
           git push gitee main:main
 
           exit 0 
