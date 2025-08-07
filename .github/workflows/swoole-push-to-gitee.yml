@@ -1,4 +1,4 @@
-name: swoole-cli-push-to-gitee
+name: swoole-src-push-to-gitee
 
 on:
   push:
