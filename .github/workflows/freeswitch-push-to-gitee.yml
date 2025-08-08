@@ -45,9 +45,9 @@ jobs:
           set -x
           CURRENT_DIR=$(pwd)
           ls -lha .
-          # python -m pip install git-filter-repo
-          curl -fSLo /usr/local/bin/git-filter-repo https://github.com/newren/git-filter-repo/blob/main/git-filter-repo?raw=true
-          chmod a+x /usr/local/bin/git-filter-repo
+          python -m pip install git-filter-repo
+          # curl -fSLo /usr/local/bin/git-filter-repo https://github.com/newren/git-filter-repo/blob/main/git-filter-repo?raw=true
+          # chmod a+x /usr/local/bin/git-filter-repo
 
           git remote -v
           git clone --single-branch  --branch master https://github.com/signalwire/freeswitch.git repo
