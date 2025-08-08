@@ -59,7 +59,7 @@ jobs:
           git fetch -p origin
           # Exclude refs created by GitHub for pull request.
           git for-each-ref --sort=-authorname --format='%(committerdate) %(authorname) %(refname)'
-          git for-each-ref --format 'delete %(refname)' 
+          git for-each-ref --format '%(refname)' ｜ grep -V 'refs/heads/'
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
 
           git push --mirror
