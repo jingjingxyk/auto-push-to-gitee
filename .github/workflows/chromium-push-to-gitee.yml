@@ -11,7 +11,7 @@ env:
 
 jobs:
   push-to-gitee:
-    if: ${{ 0 && (github.repository_owner == 'jingjingxyk') }}
+    if: ${{ (github.repository_owner == 'jingjingxyk') }}
     runs-on: ubuntu-latest
     steps:
       - name: install deps
