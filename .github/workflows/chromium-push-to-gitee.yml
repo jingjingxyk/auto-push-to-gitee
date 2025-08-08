@@ -44,13 +44,15 @@ jobs:
         run: |
           set -x
           CURRENT_DIR=$(pwd)
+          python -m pip install git-filter-repo
 
-          git clone -b main --progress https://github.com/chromium/chromium.git app
+          git clone --single-branch  --branch main --progress https://github.com/chromium/chromium.git app
           cd  app
+          git-filter-repo --refs main
           git remote add gitee git@gitee.com:jingjingxyk/chromium.git
           git remote -v 
 
-          git for-each-ref --format 'delete %(refname)' refs/
+          git for-each-ref --format 'delete %(refname)' 
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
           git push gitee main:main
           
