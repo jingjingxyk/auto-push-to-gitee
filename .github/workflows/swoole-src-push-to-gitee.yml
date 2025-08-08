@@ -60,9 +60,11 @@ jobs:
           # Exclude refs created by GitHub for pull request.
           git for-each-ref --sort=-authorname --format='%(committerdate) %(authorname) %(refname)'
           git for-each-ref --format '%(refname)' 
-          git for-each-ref --format '%(refname)' ｜ grep -v 'refs/heads/' | grep -v 'refs/tags/'
-          exit 0 
+          # git for-each-ref --format '%(refname)' ｜ grep -v 'refs/heads/' | grep -v 'refs/tags/' 
+          
           git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+          git for-each-ref --format 'delete %(refname)' refs/remotes | git update-ref --stdin
+          git for-each-ref --format 'delete %(refname)' refs/for | git update-ref --stdin
 
           git push --mirror
 
