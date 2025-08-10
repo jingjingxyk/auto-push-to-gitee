@@ -81,7 +81,7 @@ jobs:
           cd ${CURRENT_DIR}
           
           git clone --mirror https://github.com/swoole/phpx.git phpx
-          cd phpy
+          cd phpx
           git remote set-url --push origin git@gitee.com:jingjingxyk/phpx.git
           git remote -v
           git for-each-ref --format 'delete %(refname)' 
