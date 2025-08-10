@@ -70,3 +70,12 @@ jobs:
 
           cd ${CURRENT_DIR}
 
+          git clone --mirror https://github.com/swoole/phpy.git phpy
+          cd phpy
+          git remote set-url --push origin git@gitee.com:jingjingxyk/phpy.git
+          git remote -v
+          git for-each-ref --format 'delete %(refname)' 
+          git for-each-ref --format 'delete %(refname)' refs/pull | git update-ref --stdin
+          git push --mirror
+          
+          cd ${CURRENT_DIR}
