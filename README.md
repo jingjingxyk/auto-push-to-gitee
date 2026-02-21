@@ -21,3 +21,5 @@
 1. webrtc
 1. webrtc-adapter
 1. webrtc-samples
+1. replace-google-cdn
+1. build-static-php
