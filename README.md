@@ -1,4 +1,4 @@
-# 推送仓库代码到 gitee
+# 定时推送仓库代码到 gitee
 
 1. blender
 1. chromium
