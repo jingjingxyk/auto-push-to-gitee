@@ -16,10 +16,10 @@
 1. ovn
 1. postgresql
 1. socat
-1. swoole-cli
 1. swoole-src
 1. webrtc
 1. webrtc-adapter
 1. webrtc-samples
 1. replace-google-cdn
+1. swoole-cli
 1. build-static-php
